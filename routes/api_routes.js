@@ -2,6 +2,7 @@ const note_router = require('express').Router();
 const fs = require('fs');
 const path = require('path')
 
+const store = require('../db/store')
 
 
 note_router.get('/notes', (req, res) => {
