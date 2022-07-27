@@ -28,8 +28,12 @@ note_router.post('/notes', (req, res) => {
 });
 
 note_router.delete('/notes/', (req, res) => {
-    const id = 
-    connection.query(`DELETE FROM todos WHERE id = `)
+    const id = req.body.id;
+    connection.query(`DELETE FROM todos WHERE id = ${id}`, req.body, (err, data) => {
+        if (err) return console.log(err);
+
+        res.json(data);
+    })
 })
 
 

@@ -3,8 +3,10 @@ const app = express();
 const PORT = process.env.PORT || 3333;
 const path = require('path');
 
-const html_routes = require('./routes/html_routes')
-const api_routes = require('./routes/api_routes')
+
+const html_routes = require('./routes/html_routes');
+const note_router = require('./routes/api_routes');
+
 
 // Attach client side form data to the request.body object
 app.use(express.urlencoded({extended: true}))
@@ -17,7 +19,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Load routes
 app.use('/', html_routes);
-app.use('/api', api_routes);
+app.use('/api', note_router);
+
 
 
 app.listen(PORT, () => {
