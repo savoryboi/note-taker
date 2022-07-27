@@ -5,14 +5,14 @@ const uuid = require('uuid').v4;
 
 
 note_router.get('/notes', (req, res) => {
+
     fs.readFile('./db/db.json', (err, data) => {
         if (err) console.log(err);
-
-        let dbData = JSON.parse(data);
-        console.log(dbData)
         
-        res.json(dbData);
+        console.log(data);
+        res.json(data);
     })
+  
 });
 
 note_router.post('/notes', (req, res) => {
@@ -40,12 +40,12 @@ note_router.post('/notes', (req, res) => {
         });
   
     });
-    res.send('thank you for your note!');
+    res.send('you made a note!');
 });
 
-note_router.delete('/notes', (req, res) => {
+// note_router.delete('/notes', (req, res) => {
 
-});
+// });
 
 
 module.exports = note_router;
