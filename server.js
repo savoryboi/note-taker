@@ -5,7 +5,7 @@ const path = require('path');
 
 
 const html_routes = require('./routes/html_routes');
-const note_router = require('./routes/api_routes');
+const note_routes = require('./routes/api_routes');
 
 
 // Attach client side form data to the request.body object
@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Load routes
 app.use('/', html_routes);
-app.use('/api', note_router);
+app.use('/api', note_routes);
 
 
 
