@@ -8,17 +8,17 @@ note_router.get('/notes', (req, res) => {
 
     fs.readFile('./db/db.json', (err, data) => {
         if (err) console.log(err);
-        
-        console.log(data);
-        res.json(data);
+
+        let dbData = JSON.parse(data);
+        console.log(dbData)
+
+        res.send(dbData);
     })
-  
 });
 
 note_router.post('/notes', (req, res) => {
     const userNotes = req.body;
-   
-
+    
     fs.readFile('./db/db.json', (err, data) => {
         if (err) console.log(err);
 
@@ -38,14 +38,22 @@ note_router.post('/notes', (req, res) => {
         fs.writeFile('./db/db.json', stringyNotes, (err, data) => {
             if (err) console.log(err);
         });
-  
+
     });
-    res.send('you made a note!');
+    res.send('thank you for your note!');
 });
 
+
+// note_router.delete('/notes/', (req, res) => {
+//     const id = req.body.id;
+//     connection.query(`DELETE FROM todos WHERE id = ${id}`, req.body, (err, data) => {
+//         if (err) return console.log(err);
 // note_router.delete('/notes', (req, res) => {
 
+//         res.json(data);
+//     })
+// })
 // });
 
 
-module.exports = note_router;
+module.exports = note_router; 
