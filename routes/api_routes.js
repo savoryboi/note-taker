@@ -10,20 +10,22 @@ note_router.get('/notes', (req, res) => {
         if (err) console.log(err);
 
         let dbData = JSON.parse(data);
-        console.log(dbData)
 
         res.send(dbData);
     })
 });
 
 note_router.post('/notes', (req, res) => {
-    const userNotes = req.body;
-    
+    const userNote = {
+        title: req.body.title,
+        text: req.body.text
+    };
+
     fs.readFile('./db/db.json', (err, data) => {
         if (err) console.log(err);
 
         let dbData = JSON.parse(data);
-        dbData.push(userNotes);
+        dbData.push(userNote);
 
         dbData.forEach((note, index) => {
             const id = uuid().slice(0, 4);
